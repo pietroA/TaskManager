@@ -52,7 +52,7 @@ class TaskAll extends React.Component {
         </a>
       </h4>
     </div>
-    <div id={"collapseWorkgroupTask"+task.id} className="panel-collapse collapse in" role="tabpanel" aria-labelledby={"headingWorkgroupTask"+task.id}>
+    <div id={"collapseWorkgroupTask"+task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingWorkgroupTask"+task.id}>
       <div className="panel-body">
         {task.description}
         <Steps task={task} />
