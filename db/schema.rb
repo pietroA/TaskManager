@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513134330) do
+ActiveRecord::Schema.define(version: 20180527142020) do
+
+  create_table "steps", force: :cascade do |t|
+    t.integer "task_id"
+    t.text "description"
+    t.boolean "completed"
+    t.boolean "active"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_steps_on_task_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "workgroup_id"
+    t.integer "workgroup_task_id"
+    t.integer "user_id"
+    t.string "name"
+    t.string "entity_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["workgroup_id"], name: "index_tasks_on_workgroup_id"
+    t.index ["workgroup_task_id"], name: "index_tasks_on_workgroup_task_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,6 +56,42 @@ ActiveRecord::Schema.define(version: 20180513134330) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "workgroup_steps", force: :cascade do |t|
+    t.integer "workgroup_task_id"
+    t.text "description"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workgroup_task_id"], name: "index_workgroup_steps_on_workgroup_task_id"
+  end
+
+  create_table "workgroup_tasks", force: :cascade do |t|
+    t.integer "workgroup_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workgroup_id"], name: "index_workgroup_tasks_on_workgroup_id"
+  end
+
+  create_table "workgroup_users", force: :cascade do |t|
+    t.integer "workgroup_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workgroup_users_on_user_id"
+    t.index ["workgroup_id"], name: "index_workgroup_users_on_workgroup_id"
+  end
+
+  create_table "workgroups", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workgroups_on_user_id"
   end
 
 end

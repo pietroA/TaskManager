@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: one
+  description: MyText
+  completed: false
+  active: false
+  order: 1
+
+two:
+  task: two
+  description: MyText
+  completed: false
+  active: false
+  order: 1

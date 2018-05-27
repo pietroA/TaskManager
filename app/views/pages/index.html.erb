@@ -1,2 +1,16 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<% if user_signed_in? %>
+
+<header class="jumbotron text-center">
+    <h2><small>Welcome back</small> <%= current_user.username %></h2>
+</header>
+<%= react_component("Workgroups") %>
+
+<% else %>
+<header class="jumbotron text-center">
+    <h1>Task Force</h1>
+    <a  href="/users/sign_in" class="btn btn-lg btn-primary">Sign in</a>
+    <a  href="/users/sign_up" class="btn btn-lg btn-primary">Register</a>
+</header>
+
+
+<% end %>

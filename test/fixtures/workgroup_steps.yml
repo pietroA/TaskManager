@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workgroup_task: one
+  description: MyText
+  order: 1
+
+two:
+  workgroup_task: two
+  description: MyText
+  order: 1

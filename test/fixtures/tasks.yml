@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workgroup: one
+  workgroup_task: one
+  : 
+  name: MyString
+  entityName: MyString
+
+two:
+  workgroup: two
+  workgroup_task: two
+  : 
+  name: MyString
+  entityName: MyString
