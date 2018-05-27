@@ -53,10 +53,10 @@ class Steps extends React.Component {
         return(
 <div className="list-group">
 <div className="list-group-item row">
-    <div className="col-xs-offset-8 col-xs-2">
+    <div className="col-xs-offset-6 col-xs-3">
         completed
     </div>
-    <div className="col-xs-2">
+    <div className="col-xs-3">
         active
     </div>
 </div>
