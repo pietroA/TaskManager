@@ -1,19 +1,19 @@
 /**
  *    per acciaierie aggiungere:
  * - creazione tabella
- * - creazione Entity $Entity 
- * - Mapping DB <-> Entity $EntityMap
- * - creazione DTO $EntityDTO
- * - Auto Mapper Profile (Entity -> DTO) su AcciaieriaProfile
- * - creazione Repositories $EntityRepository
- * - creazione Controller $EntityController
- * - creazione Controller Gateway $EntityController
- * - creazione Model $EntityModel
- * - creazione Service $EntityService
- * - creazione ViewModel $EntityViewModel
+ * - creazione Entity $entity 
+ * - Mapping DB <-> Entity $entityMap
+ * - creazione DTO $entityDTO
+ * - Auto Mapper Profile ($entity -> $entityDTO) su AcciaieriaProfile
+ * - creazione Repositories $entityRepository
+ * - creazione Controller $entityController
+ * - creazione Controller Gateway $entityController
+ * - creazione Model $entityModel
+ * - creazione Service $entityService
+ * - creazione ViewModel $entityViewModel
  * - registrazione su ViewModelLocator
- * - creazione Views $EntityPage $EntityDialog
- * - creazione converter
+ * - creazione Views $entityPage $entityDialog
+ * - creazione converters
  * 
  * campi:
  *  workgroup_task: references

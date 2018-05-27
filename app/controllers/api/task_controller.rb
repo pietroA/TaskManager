@@ -15,7 +15,7 @@ module Api
         def create
             @task = Workgroup.find(params[:workgroup_id]).task.new(task_parameters)
             @task.save
-            @task.update_attributes(user_id: current_user_id);
+            @task.update_attributes(user_id: current_user.id);
             generate_default_steps if @task.workgroup_task
             
             render json: @task
