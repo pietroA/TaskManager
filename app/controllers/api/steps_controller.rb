@@ -4,7 +4,7 @@ module Api
         before_action :set_step, only: [:show, :update, :destroy]
         
         def index
-            render json: Task.find(params[:task_id]).steps.all
+            render json: Task.find(params[:task_id]).steps.all.order(:order)
         end
 
         def show
