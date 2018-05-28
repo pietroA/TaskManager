@@ -61,7 +61,7 @@ workgroup_steps.push(<WorkgroupStep key={"workgroup-step-"+workgroup_step.id} wo
 <div>
     <WorkgroupStepForm workgroup_task={this.props.workgroup_task} 
                         handleAdd={this.handleAdd}
-                        workgroup_steps={this.props.workgroup_steps} />
+                        workgroup_steps={this.state.workgroup_steps} />
     <div className="list-group">
         {workgroup_steps}
     </div>
