@@ -307,6 +307,11 @@ class Workgroup extends React.Component {
         e.preventDefault();
         this.setState({tab_selected: 2})
     }
+    handleAddWT(workgroup_task){
+        var workgroup_task_list = this.state.workgroup_task_list;
+        workgroup_task_list.push(workgroup_task);
+        this.setState({workgroup_task_list: workgroup_task_list});
+    }
     renderViewMode(){
         return(
 <div>
