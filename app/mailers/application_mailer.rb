@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@task-force.com'
+  default from: 'noreply@taskforce.com'
   layout 'mailer'
 end
