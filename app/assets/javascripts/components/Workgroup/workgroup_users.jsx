@@ -136,7 +136,7 @@ class WorkgroupUserForm extends React.Component {
             type: 'POST',
             data: {
                 workgroup_user: {
-                    user_id: self.state.user_id
+                    user_id: self.props.user.id
                 }
             },
             success: (workgroup_user) => {

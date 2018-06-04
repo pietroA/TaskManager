@@ -23,7 +23,7 @@ module Api
             render json: @workgroup_user
         end
         
-        def delete
+        def destroy
             @workgroup_user.delete
             
             head :no_content

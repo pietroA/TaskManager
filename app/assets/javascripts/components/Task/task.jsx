@@ -29,7 +29,6 @@ class TaskAll extends React.Component {
             url: "api/workgroups/"+self.props.workgroup.id+"/task/",
             type: "GET",
             success: (task_list) => {
-                console.log(self.props.workgroup.name, task_list)
                 self.setState({task_list: task_list});
             },
             error: (XHR, status, error) => { console.log(XHR, status, error) }
