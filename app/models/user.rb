@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   
   has_many :workgroups, dependent: :destroy
+  has_many :task, dependent: :destroy
+  has_many :workgroup_users, dependent: :destroy
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
