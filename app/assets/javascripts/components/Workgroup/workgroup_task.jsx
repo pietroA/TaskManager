@@ -31,7 +31,7 @@ class WorkgroupTaskAll extends React.Component {
         </a>
       </h4>
     </div>
-    <div id={"collapseWorkgroupTask"+workgroup_task.id} className="panel-collapse collapse in" role="tabpanel" aria-labelledby={"headingWorkgroupTask"+workgroup_task.id}>
+    <div id={"collapseWorkgroupTask"+workgroup_task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingWorkgroupTask"+workgroup_task.id}>
       <div className="panel-body">
       <WorkgroupTask workgroup_task={workgroup_task} />
       </div>
@@ -44,7 +44,7 @@ class WorkgroupTaskAll extends React.Component {
         return(
 <div>
   <WorkgroupTaskForm workgroup={this.props.workgroup} handleAdd={this.handleAdd} />
-  <div className="panel-group" id="workgroup-task-list" role="tablist" aria-multiselectable="true">
+  <div className="panel-group" id="workgroup-task-list" role="tablist" aria-multiselectable="false">
       {workgroup_task_list}
   </div>
 </div>

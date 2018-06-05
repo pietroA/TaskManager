@@ -44,14 +44,14 @@ class TaskAll extends React.Component {
         this.state.task_list.forEach((task) => {
             task_list.push(
   <div className="panel panel-default" key={"task-panel-"+task.id}>
-    <div className="panel-heading" role="tab" id={"headingWorkgroupTask"+task.id}>
+    <div className="panel-heading" role="tab" id={"headingTask"+task.id}>
       <h4 className="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#workgroup-task-list" href={"#collapseWorkgroupTask"+task.id} aria-expanded="true" aria-controls={"collapseWorkgroupTask"+task.id}>
+        <a role="button" data-toggle="collapse" data-parent="#task-list" href={"#collapseTask"+task.id} aria-expanded="true" aria-controls={"collapseTask"+task.id}>
           {task.name}
         </a>
       </h4>
     </div>
-    <div id={"collapseWorkgroupTask"+task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingWorkgroupTask"+task.id}>
+    <div id={"collapseTask"+task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingTask"+task.id}>
       <div className="panel-body">
         {task.description}
         <Steps task={task} />
@@ -67,7 +67,7 @@ class TaskAll extends React.Component {
 <TaskForm workgroup={this.props.workgroup} 
             handleAdd={this.handleAdd}
             workgroup_task_list={this.props.workgroup_task_list} />
-    <div className="panel-group" id="workgroup-task-list" role="tablist" aria-multiselectable="true">
+    <div className="panel-group" id="task-list" role="tablist" aria-multiselectable="false">
         {task_list}
     </div>
 </div>
