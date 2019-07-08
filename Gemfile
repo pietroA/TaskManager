@@ -44,6 +44,7 @@ gem 'devise'
 group :development, :test do
 	gem 'sqlite3', '~> 1.3.13'
   gem 'byebug', platform: :mri
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :development do
