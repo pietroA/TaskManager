@@ -42,7 +42,7 @@ gem 'redis', '~> 4.0'
 gem 'devise'
 
 group :development, :test do
-  gem 'sqlite3'
+	gem 'sqlite3', '~> 1.3.13'
   gem 'byebug', platform: :mri
 end
 
