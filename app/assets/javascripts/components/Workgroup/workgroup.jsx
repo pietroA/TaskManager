@@ -249,16 +249,16 @@ class Workgroup extends React.Component {
     };
     this.handleAddWT = this.handleAddWT.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.getWorkgroupTask = this.getWorkgroupTask.bind(this);
+    this.Load = this.Load.bind(this);
     this.selectTaskTab = this.selectTaskTab.bind(this);
     this.selectWorkgroupTaskTab = this.selectWorkgroupTaskTab.bind(this);
     this.selectUsersTab = this.selectUsersTab.bind(this);
     this.handleEditMode = this.handleEditMode.bind(this);
   }
     componentDidMount(){
-      this.getWorkgroupTask();
+      this.Load();
     }
-    getWorkgroupTask(){
+    Load(){
         var self = this;
         
         $.ajax({
@@ -346,7 +346,7 @@ class Workgroup extends React.Component {
         <TaskAll workgroup={this.props.workgroup} workgroup_task_list={this.state.workgroup_task_list} />
     </div>
     <div role="tabpanel" className={"tab-pane"+(this.state.tab_selected === 1 ? " active" : "")} id="workgroup-task">
-        <WorkgroupTaskAll workgroup={this.props.workgroup} workgroup_task_list={this.state.workgroup_task_list} />
+        <WorkgroupTaskAll workgroup={this.props.workgroup} workgroup_task_list={this.state.workgroup_task_list} Load={this.Load}  />
     </div>
     <div role="tabpanel" className={"tab-pane"+(this.state.tab_selected === 2 ? " active" : "")} id="add-users">
         <WorkgroupUsersForm workgroup={this.props.workgroup} />

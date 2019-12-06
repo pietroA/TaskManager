@@ -17,13 +17,13 @@ class TaskAll extends React.Component {
         task_list: []
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.getTaskList = this.getTaskList.bind(this);
+    this.Load = this.Load.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
   }
      componentDidMount(){
-         this.getTaskList();
+         this.Load();
      }
-    getTaskList(){
+    Load(){
         var self = this;
         $.ajax({
             url: "api/workgroups/"+self.props.workgroup.id+"/task/",
@@ -42,24 +42,7 @@ class TaskAll extends React.Component {
     render(){
         var task_list = [];
         this.state.task_list.forEach((task) => {
-            task_list.push(
-  <div className="panel panel-default" key={"task-panel-"+task.id}>
-    <div className="panel-heading" role="tab" id={"headingTask"+task.id}>
-      <h4 className="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#task-list" href={"#collapseTask"+task.id} aria-expanded="true" aria-controls={"collapseTask"+task.id}>
-          {task.name}
-        </a>
-      </h4>
-    </div>
-    <div id={"collapseTask"+task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingTask"+task.id}>
-      <div className="panel-body">
-        {task.description}
-        <Steps task={task} />
-      </div>
-    </div>
-  </div>
-
-                )
+            task_list.push(<Task key={task.id} task={task} Load={this.Load} />)
         })
         
         return(
@@ -75,6 +58,47 @@ class TaskAll extends React.Component {
 
     }
  }
+
+ class Task extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+    handleDelete(e) {
+        e.preventDefault();
+        var task = this.props.task;
+        $.ajax({
+            url : 'api/workgroups/'+task.workgroup_id+'/task/'+task.id,
+            type:"DELETE",
+            success: () => {
+                this.props.Load();
+            },
+            error: (XHR, status, error) => { console.log(XHR, status, error); }
+        })
+    }
+    render(){
+        var task = this.props.task;
+return(
+    <div className="panel panel-default" key={"task-panel-"+task.id}>
+    <div className="panel-heading" role="tab" id={"headingTask"+task.id}>
+      <h4 className="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#task-list" href={"#collapseTask"+task.id} aria-expanded="true" aria-controls={"collapseTask"+task.id}>
+          {task.name}
+        </a>
+      </h4>
+    </div>
+    <div id={"collapseTask"+task.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"headingTask"+task.id}>
+      <div className="panel-body">
+        <div className="task-description">
+        {task.description} <a href="" onClick={this.handleDelete} className="right-button" ><i className="fa fa-trash"></i></a>
+        </div>
+        <Steps task={task} />
+      </div>
+    </div>
+  </div>
+);
+    }
+ }
  
 class TaskForm extends React.Component{
   constructor(props) {
@@ -82,6 +106,7 @@ class TaskForm extends React.Component{
     this.state = {
           name: '',
           entity_name: "",
+          description: "",
           workgroup_task_id: 0
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -117,10 +142,12 @@ class TaskForm extends React.Component{
               task: {
                   name: self.state.name,
                   entity_name: self.state.entity_name,
+                  description: self.state.description,
                   workgroup_task_id: self.state.workgroup_task_id
               }
           },
           success: (task) => {
+              this.setState({name:'', entity_name:'', description:'', workgroup_id:task.workgroup_id});
               self.props.handleAdd(task);
           },
           error: (XHR, status, error) => { console.log(XHR, status, error); }
@@ -157,36 +184,57 @@ class TaskForm extends React.Component{
       
       return(
 <div className="form-horizontal">
-    <div className="form-group">
-        <label htmlFor="name" className="sr-only"></label>
-        <input type="text" 
-                className="form-control"
-                name="name" 
-                id="name"
-                placeholder="Name"
-                onChange={this.handleChange}
-                value={this.state.name}/>
+<div className="row">
+    <div className="col-sm-4">
+        <div className="form-group">
+            <select value={this.state.workgroup_task_id}
+                        className="form-control"
+                        name="workgroup_task_id" 
+                        id="workgroup_task_id"
+                        placeholder="Name"
+                        onChange={this.handleChange}>
+                    <option value="0"> -- select a workgroup_task --</option>
+                    {workgroup_task_options}   
+            </select>
+        </div>
     </div>
-    <div className="form-group">
-        <label htmlFor="entity_name" className="sr-only"></label>
-        <input type="text" 
-                className="form-control"
-                name="entity_name" 
-                id="entity_name"
-                placeholder="Entity Name"
-                onChange={this.handleChange}
-                value={this.state.entity_name}/>
+    <div className="col-sm-4">
+        <div className="form-group">
+            <label htmlFor="name" className="sr-only"></label>
+            <input type="text" 
+                    className="form-control"
+                    name="name" 
+                    id="name"
+                    placeholder="Name"
+                    onChange={this.handleChange}
+                    value={this.state.name}/>
+        </div>
     </div>
-    <select value={this.state.workgroup_task_id}
-                className="form-control"
-                name="workgroup_task_id" 
-                id="workgroup_task_id"
-                placeholder="Name"
-                onChange={this.handleChange}>
-             <option value="0"> -- select a workgroup_task --</option>
-             {workgroup_task_options}   
-    </select>
-
+    <div className="col-sm-3">
+        <div className="form-group">
+            <label htmlFor="entity_name" className="sr-only"></label>
+            <input type="text" 
+                    className="form-control"
+                    name="entity_name" 
+                    id="entity_name"
+                    placeholder="Entity Name"
+                    onChange={this.handleChange}
+                    value={this.state.entity_name}/>
+        </div>
+    </div>
+</div>
+<div className="row">
+    <div className="col-sm-11">
+        <div className="form-group">
+            <textarea className="form-control" 
+                        name="description"
+                        id="description"
+                        onChange={this.handleChange}
+                        value={this.state.description}
+                        ></textarea>
+        </div>
+    </div>
+</div>
     <button type="button" 
         className="btn btn-primary" 
         onClick={this.submit}>Save</button>

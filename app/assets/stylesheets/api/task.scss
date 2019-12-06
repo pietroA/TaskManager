@@ -1,3 +1,10 @@
 // Place all the styles related to the API::Task controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.task-description{
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    border: solid 1px rgba(190,190,190,0.3);
+    min-height: 30px;
+}

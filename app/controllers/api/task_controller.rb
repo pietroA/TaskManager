@@ -26,8 +26,9 @@ module Api
             render json: @task
         end
         
-        def delete
-            @task.delete
+        def destroy
+            p @task
+            @task.destroy
             
             head :no_content
         end
@@ -39,7 +40,7 @@ module Api
         end
         
         def task_parameters
-            params.require(:task).permit(:workgroup_id, :workgroup_task_id, :user_id, :name, :entity_name)
+            params.require(:task).permit(:workgroup_id, :workgroup_task_id, :user_id, :name, :entity_name, :description)
         end
         
         def generate_default_steps

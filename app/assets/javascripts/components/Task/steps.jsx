@@ -22,6 +22,7 @@ class Steps extends React.Component {
     }
     getSteps(){
         var self = this;
+        console.log(self.props.task)
         $.ajax({
             url: "api/task/"+self.props.task.id+"/steps/",
             type: "GET",

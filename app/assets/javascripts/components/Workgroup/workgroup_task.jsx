@@ -16,7 +16,7 @@ class WorkgroupTaskAll extends React.Component {
     this.handleAdd = this.handleAdd.bind(this);
   }
   handleAdd(workgroup_task){
-    self.props.handleAdd(workgroup_task);
+      this.props.Load();
   }
     render(){
         
@@ -111,6 +111,7 @@ class WorkgroupTaskForm extends React.Component{
               }
           },
           success: (workgroup_task) => {
+              this.setState({name:'', description:''});
               self.props.handleAdd(workgroup_task);
           },
           error: (XHR, status, error) => { console.log(XHR, status, error); }

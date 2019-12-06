@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527142020) do
+ActiveRecord::Schema.define(version: 20191206154835) do
 
   create_table "steps", force: :cascade do |t|
     t.integer "task_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180527142020) do
     t.string "entity_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["user_id"], name: "index_tasks_on_user_id"
     t.index ["workgroup_id"], name: "index_tasks_on_workgroup_id"
     t.index ["workgroup_task_id"], name: "index_tasks_on_workgroup_task_id"
